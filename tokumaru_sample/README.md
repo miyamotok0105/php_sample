@@ -39,3 +39,19 @@ python tcp_client.py
 https://qiita.com/msrks/items/0550603efc59f6e8ba09
 
 
+
+# 関連図書
+
+HTTPの教科書    
+https://www.shoeisha.co.jp/book/detail/9784798126258
+    
+
+ふつうのLinuxプログラミング 第2版    
+http://www.sbcr.jp/products/4797386479.html
+    
+
+サイバーセキュリティプログラミング
+――Pythonで学ぶハッカーの思考    
+https://www.oreilly.co.jp/books/9784873117317/
+    
+

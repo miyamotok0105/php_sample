@@ -1,13 +1,13 @@
 <?php
 namespace Pattern;
-require_once('./sdk/Car.php');
-require_once('./wrapper/CarWrapper.php');
-use Pattern\wrapper\CarWrapper;
+require_once('./wrapper/CarFactory.php');
+use Pattern\wrapper\CarFactory;
 
-
-$car = new CarWrapper();
-$car = $car->create("toyota");
-
+$car = new CarFactory();
+$car = $car->create("1", "toyota");
 print $car->getName()."\n";
 
 
+$car = new CarFactory();
+$car = $car->create2("2", "toyota");
+print $car->getName()."\n";

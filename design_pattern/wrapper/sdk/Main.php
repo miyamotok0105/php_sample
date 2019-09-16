@@ -3,10 +3,9 @@ namespace Pattern\sdk;
 
 require "./Car.php";
 
-use Pattern\Car;
+use Pattern\sdk\Car;
 
-$car = new Car("toyota");
-
+$car = new Car("1", "toyota");
 print $car->getName()."\n";
 
 

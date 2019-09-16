@@ -1,5 +1,5 @@
 <?php
-namespace Pattern\sdk;
+namespace Pattern\sdk\sdk2;
 
 class Car
 {
@@ -14,6 +14,6 @@ class Car
 
     public function getName()
     {
-      return $this->id." is id. ".$this->name." is name.";
-    }
+      return $this->id." is id. ".$this->name." is name. 2.";
+    } 
 }

@@ -4,10 +4,9 @@
     <title></title>
 </head>
 <body>
-
-    <?php 
+<?php
+    //declare(strict_types=1);
     // 厳密な型チェックモードに設定する
-    // declare(strict_types=1);
     ?>
 
     <?php if (date("H") >= 6 and date("H") <= 11) : ?>
@@ -227,18 +226,189 @@
     echo ($a > 0 and 10 > $a) ? 0 : $a;
     echo ($a > 0 || 10 > $a) ? 0 : $a;
 
+    
+    // empty    is_null 
+    //     ==null  ===null  isset   array_key_exists
+    // ϕ |   T   |   T   |   F   |   F   
+    // null |   T   |   T   |   F   |   T   
+    // "" |   T   |   F   |   T   |   T   
+    // [] |   T   |   F   |   T   |   T
+    // 0 |   T   |   F   |   T   |   T      
+    // false |   T   |   F   |   T   |   T   
+    // true |   F   |   F   |   T   |   T   
+    // 1 |   F   |   F   |   T   |   T   
+    // \0 |   F   |   F   |   T   |   T   
+    //https://stackoverflow.com/questions/8236354/php-is-null-when-empty
 
+    //ビット演算子
 
+    //ゲームでフラグが多いときに使えそう
+    //https://lambdalisue.hatenablog.com/entry/2013/12/22/041347
+    //画像処理、暗号処理、Base64のエンコードとデコードを実装する際
+    //https://stackoverflow.com/questions/2096916/real-world-use-cases-of-bitwise-operators
+
+    //
 
     // comment
     /** comment */
+
+    //
     if(true) {
 
     }
+    if(true === true) {
+    } elseif(true === true) {
+    } else {}
+
+    //if(is_numeric($hoge)) {
+    //if(is_numeric($hoge)) {
+    //if(isset($hoge)) {
+    
+    //個人的なアンチパターン
+    //if($num) { //1だったのでtrueとかはわかんなくなる気が.0だったらどうだっけ？って
+    //if($str) { //文字も
+    //if(count($arr)) { //
+    
+    //暗黙的変換に注意
+    //型大事!!!!!
+
+    //$aが文字か数字か配列かオブジェクトかで振る舞いが変わる
+    //$a = []と$a = [1,2]で結果が変わる
+    //$a = '0'と$a = '1'で結果が変わる
+    //if(!$a)
+
+    //緩やかな比較演算子は型が違っても比較できる
+    //if($a == '')
+
+    //if(empty($a))
+
+    //issetは逆で同じis_null
+
+    //switch文
+    //break忘れるとバグるよ
+
+    //ネスト分岐アンチパターン
+    //ネストしすぎないで、早期リターンする
+    //https://qiita.com/pakkun/items/9bef9132f168ba0befd7
+
+    //exit; //終了コードを返さない
+    //exit(0) //成功
+    //exit(1) //1または0以外の数字はエラー
+    //die('hoge'); //エラーメッセージを表示して終了
+
+    // //配列を先頭から順に処理
+    // foreach (配列 as 値変数) {
+    //     繰り返す処理;
+    // }
+    
+    // //連想配列を先頭から順に処理
+    // foreach (連想配列 as キー変数 => 値変数) {
+    //     繰り返す処理;
+    // }
+    // foreach ($arr as $a) {
+        
+    // }
+
+    $list = ["apple", "lemon", "banana"];
+
+    foreach ( $list as $key=> $value ) {
+        echo "({$key}){$value}" . PHP_EOL ;
+        if($key === 1 ){
+            break;
+        }
+    }
+
+    //foreach中に配列を変更したい時はリファレンス渡しを使う
+    //&$valueで
+    //foreachの中の$valueと、外の$valueは変数のスコープが違うのに、外の変数に影響する。
+    $array = array(1, 2, 3);
+    foreach ($array as &$value) {
+        // do nothing.
+    }
+    unset($value); //必須！！！
+    $value = 10;
+    var_dump($array);
+
+    //for文
+    //普通の構文
+    // for($i = 0; $i < 3; $i++){
+    //     echo "({$key}){$value}" . PHP_EOL ;
+    //     if($key === 1 ){
+    //         break;
+    //     }
+    // }
+
+    //count関数も使える
+    // for ( $i = 0; $i < count($array); ++$i){
+    //     doit($array[$i]);
+    // }
+
+    //多重ループを避ける
+    //２重くらいなら良いが、４重とかになるのであれば分けるのも考える
+
+    //ruby
+    // (1..3).each do |i|
+    //     (1..3).each do |j|
+    //         p [i, j]
+    //     end
+    // end
+
+    // (1..3).to_a.repeated_permutation(2) do |i, j|
+    //     p [i, j]
+    // end
+
+    // (1..3).to_a.repeated_permutation(3) do |i, j, k|
+    //     p [i, j, k]
+    // end
+    //https://nekotheshadow.hatenablog.com/entry/2015/07/24/224500
+
+
+
     ?>
 
     
-    <?php phpinfo(2); 
+    <?php
+    //endifを使った方がhtmlとphpの混在する中では見やすい
+        $hour = date('H');
+        if(5<= $hour && $hour < 10):
+    ?>
+        <p>おはようございます</p>
+    <?php else:?>
+        <p>こんばんは。</p>
+    <?php endif;?>
+
+    <?php
+    //endforeach
+        $array = array(1,2,3,4,5);
+        foreach($array as $value):
+    ?>
+    <p>value：
+        <?php echo $value?>
+    </p>
+    <?php endforeach;?>
+
+
+    <?php 
+        $name_global = '';
+        //引数に&をつけるとリファレンス渡し
+        //?stringの?はnull許容型
+        function greeting(string &$name): ?string {
+            $message = 'Hello, '. $name. '!'; // 処理
+            $name = 'tom';
+            //グローバル変数
+            global $name_global;
+            $message = null;
+            return $message; // 結果を返す
+        }
+        $name = 'sum';
+        // $message = greeting('Tom');
+        $message = greeting($name);
+        echo $message; // 'Hello, Tom!'
+        echo $name; // 'Hello, Tom!'
+
+
+
+    //phpinfo(2); 
         echo '<?php または <?=のPHPタグを使用可能';
     ?>
     <p> PHP コンパイルオプションと拡張機能、

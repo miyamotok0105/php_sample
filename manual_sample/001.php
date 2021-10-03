@@ -1,3 +1,5 @@
+<?php
+
 echo "特殊文字を HTML エンティティに変換する";
 
 echo htmlspecialchars('ようこそ', ENT_QUOTES, 'UTF-8');
